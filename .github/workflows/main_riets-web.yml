@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Set up Python version
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v1
         with:
           python-version: '3.10'
 
@@ -64,4 +64,4 @@ jobs:
         with:
           app-name: 'riets-web'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BCE1353B43754D6DAE93B0618502AB8F }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7041AB46ADEB4D0BB63D4AA4FB8F5C37 }}
