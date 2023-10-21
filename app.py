@@ -61,17 +61,68 @@ def plot_DDR_single_point(Y_orig, new_point_location, severity, point_color='red
     
 @app.route("/predict", methods=['POST'])
 def predict():
-    Age = float(request.form['Age'])
-    Dyspnea = float(request.form['dyspnea'])
-    DM = float(request.form['DM'])
-    SPO2 = float(request.form['SPO2'])
-    RR = float(request.form['RR'])
-    CRP = float(request.form['CRP'])
-    LDH = float(request.form['LDH'])
-    ANC = float(request.form['ANC'])
-    WBC = float(request.form['WBC'])
-    ALC = float(request.form['ALC'])
-    PLT = float(request.form['PLT'])
+    # Extract form data
+    Age = request.form['Age']
+    Dyspnea = request.form['dyspnea']
+    DM = request.form['DM']
+    SPO2 = request.form['SPO2']
+    RR = request.form['RR']
+    CRP = request.form['CRP']
+    LDH = request.form['LDH']
+    ANC = request.form['ANC']
+    WBC = request.form['WBC']
+    ALC = request.form['ALC']
+    PLT = request.form['PLT']
+
+    error_message = None
+
+    # Validate Age
+    if not Age.isdigit() or not 0 <= int(Age) <= 120:
+        error_message = "Invalid Age entered. Please enter an age between 0 and 120."
+
+    # Validate Dyspnea
+    elif not Dyspnea.isdigit() or not 0 <= int(Dyspnea) <= 1:
+        error_message = "Invalid value for Dyspnea. Please enter 0 or 1."
+
+    # Validate DM
+    elif not DM.isdigit() or not 0 <= int(DM) <= 1:
+        error_message = "Invalid value for DM. Please enter 0 or 1."
+
+    # Validate SPO2
+    elif not SPO2.isdigit() or not 0 <= int(SPO2) <= 100:
+        error_message = "Invalid value for SPO2. Please enter a value between 0 and 100."
+
+    # Validate RR
+    elif not RR.isdigit() or not 0 <= int(RR) <= 100:
+        error_message = "Invalid value for RR. Please enter a value between 0 and 100."
+
+    # Validate CRP
+    elif not CRP.isdigit() or not 0 <= int(CRP) <= 1000:
+        error_message = "Invalid value for CRP. Please enter a value between 0 and 1000."
+
+    # Validate LDH
+    elif not LDH.isdigit() or not 0 <= int(LDH) <= 10000:
+        error_message = "Invalid value for LDH. Please enter a value between 0 and 10000."
+
+    # Validate ANC
+    elif not ANC.isdigit() or not 0 <= int(ANC) <= 100000:
+        error_message = "Invalid value for ANC. Please enter a value between 0 and 100000."
+
+    # Validate WBC
+    elif not WBC.isdigit() or not 0 <= int(WBC) <= 100000:
+        error_message = "Invalid value for WBC. Please enter a value between 0 and 100000."
+
+    # Validate ALC
+    elif not ALC.isdigit() or not 0 <= int(ALC) <= 100000:
+        error_message = "Invalid value for ALC. Please enter a value between 0 and 100000."
+
+    # Validate PLT
+    elif not PLT.isdigit() or not 0 <= int(PLT) <= 1000000:
+        error_message = "Invalid value for PLT. Please enter a value between 0 and 1000000."
+
+    # If there's an error message, render the home page with the error and retain the previous data
+    if error_message:
+        return render_template('home.html', error_message=error_message, previous_data=request.form)
 
     # Create an array with the inputs in the correct order
     input_results = np.array([[CRP, LDH, ALC, ANC, RR, Dyspnea, WBC, Age, SPO2, PLT, DM]])
