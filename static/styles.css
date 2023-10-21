@@ -1,0 +1,13 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.footer-text {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background for better readability */
+    padding: 5px;
+    border-radius: 5px;
+}
