@@ -180,26 +180,27 @@ def result_page():
     else:
         return redirect(url_for('home'))
 
-# def create_connection():
-#     conn_str = 'Server=tcp:riets-web-server.database.windows.net,1433;Initial Catalog=riets-web-database;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;Authentication="Active Directory Default";'
-#     conn = pyodbc.connect(conn_str)
-#     return conn
+def create_connection():
+    conn_str = 'Server=tcp:riets-web-server.database.windows.net,1433;Initial Catalog=riets-web-data;Persist Security Info=False;User ID=baeksw98;Password=Qortkddnjs1!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;'
+    conn = pyodbc.connect(conn_str)
+    return conn
 
-# def save_to_cloud_database(data):
-#     try:
-#         conn = create_connection()
-#         cursor = conn.cursor()
-        
-#         query = """INSERT INTO Records (country, race, hospital, dyspnea, dm, spo2, rr, crp, ldh, anc, wbc, alc, plt, prediction_proba, actual_outcome) 
-#                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"""
-        
-#         cursor.execute(query, (data['country'], data['race'], data['hospital'], data['Dyspnea'], data['DM'], data['SPO2'], data['RR'], data['CRP'], data['LDH'], data['ANC'], data['WBC'], data['ALC'], data['PLT'], data['prediction'], data['actual_outcome']))
-        
-#         conn.commit()
-#         cursor.close()
-#         conn.close()
-#     except Exception as e:
-#         print(f"Error: {e}")
+def save_to_cloud_database(data):
+    try:
+        with create_connection() as conn:
+            cursor = conn.cursor()
+            
+            query = """INSERT INTO Records (country, race, hospital, dyspnea, dm, spo2, rr, crp, ldh, anc, wbc, alc, plt, prediction_proba, actual_outcome) 
+                       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"""
+            
+            cursor.execute(query, (data['country'], data['race'], data['hospital'], data['Dyspnea'], data['DM'], data['SPO2'], data['RR'], data['CRP'], data['LDH'], data['ANC'], data['WBC'], data['ALC'], data['PLT'], data['prediction'], data['actual_outcome']))
+            
+            conn.commit()
+            return True
+
+    except Exception as e:
+        print(f"Error: {e}")
+        return False
 
 @app.route("/submit_survey", methods=['POST'])
 def submit_survey():
@@ -225,7 +226,15 @@ def submit_survey():
     # Call the function to save data to the database
     save_to_cloud_database(data)
 
-    return redirect(url_for('thank_you'))
+    success = save_to_cloud_database(data)
+    if success:
+        return redirect(url_for('thank_you'))
+    else:
+        return redirect(url_for('error_page'))
+
+@app.route("/error")
+def error_page():
+    return render_template('error.html')
 
 @app.route("/thank_you", methods=['GET'])
 def thank_you():
