@@ -64,4 +64,4 @@ jobs:
         with:
           app-name: 'riets-web'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_AAD7610E949F49D2ACAE421040767322 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_136828AA9C334ED9A63FC575A7F8AAC0 }}
