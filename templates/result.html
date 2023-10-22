@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prediction Result</title>
+    <title>RIETS Prediction Result</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <style>
@@ -15,7 +15,7 @@
         .reference-images img, .patient-plot img, .additional-figures img {
             max-width: 100%;
             height: auto
-            margin-bottom: 2rem;  /* Increased margin for spacing */
+            margin-bottom: 2rem; 
         }
         .abbreviation {
             display: inline-block;
@@ -25,16 +25,24 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container mt-5">
         <div class="text-center prediction-result">
             RIETS prediction of a patient progressing to severe status is: {{ prediction }}%
         </div>
+        
+        <!-- DDRTree Description -->
+        <div class="mt-4">
+            <p>
+                <strong>About DDRTree (discriminative dimensionality reduction via learning a tree):</strong> A prevalent genomic analysis tool, DDRTree is an unsupervised learning technique that efficiently visualizes multi-dimensional features into a two-dimensional tree structure. In RIETS, DDRTree was applied to cluster and characterize each patient. This method is known for its high stability and accuracy in capturing the cluster information.
+            </p>
+        </div>
 
         <div class="row">
             <div class="col-md-6">
                 <!-- Display DDR Tree with Patient's Point -->
-                <h5 class="text-center">DDR Tree Plotting of New Incoming Patient</h5>
+                <h5 class="text-center">Projection of New Incoming Patient on DDRTree</h5>
                 <img src="{{ url_for('static', filename='Patient_DDR_Tree.png') }}" alt="DDR Tree with Patient Point" class="img-fluid">
                 <h5 class="text-center">New patient represented as a red star</h5>
                 <h5 class="text-center">*Red star can be drawn far away from the tree for outliers</h5>
@@ -50,11 +58,11 @@
 
         <div class="row mt-4 additional-figures">
             <div class="col-md-6">
-                <h5 class="text-center">Categorical Features of DDR Tree</h5>
+                <h5 class="text-center">DDRTree of Categorical Features</h5>
                 <img src="{{ url_for('static', filename='Figure_6B.png') }}" alt="Figure 6B" class="img-fluid">
             </div>
             <div class="col-md-6">
-                <h5 class="text-center">Continuous Features of DDR Tree</h5>
+                <h5 class="text-center">DDR Tree of Continuous Features</h5>
                 <img src="{{ url_for('static', filename='Figure_6C.png') }}" alt="Figure 6C" class="img-fluid">
             </div>
         </div>
@@ -76,4 +84,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

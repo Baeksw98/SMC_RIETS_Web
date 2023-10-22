@@ -37,7 +37,7 @@ def project_to_ddr_space(W, new_data_point):
     projected_point = np.dot(new_data_point, W)
     return projected_point
 
-def plot_DDR_single_point(Y_orig, new_point_location, severity, point_color='red', point_size=30):
+def plot_DDR_single_point(Y_orig, new_point_location, severity, point_color='red', point_size=50):
     # Transpose Y for easier plotting
     Y = Y_orig.copy().T  
 

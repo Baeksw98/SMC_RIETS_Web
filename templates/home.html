@@ -33,55 +33,55 @@
 
                 <!-- DM Input -->
                 <div class="mb-3">
-                    <label for="DM" class="form-label">DM (0=no/1=yes)</label>
+                    <label for="DM" class="form-label">Diabetes Mellitus (0=no/1=yes)</label>
                     <input type="number" class="form-control" name="DM" id="DM" min="0" max="1" value="{{ previous_data['DM'] if previous_data else '' }}" required>
                 </div>
 
                 <!-- SPO2 Input -->
                 <div class="mb-3">
-                    <label for="SPO2" class="form-label">SPO2 (%)</label>
+                    <label for="SPO2" class="form-label">Oxygen Saturation (%)</label>
                     <input type="number" class="form-control" name="SPO2" id="SPO2" min="0" max="100" value="{{ previous_data['SPO2'] if previous_data else '' }}" required>
                 </div>
 
                 <!-- RR Input -->
                 <div class="mb-3">
-                    <label for="RR" class="form-label">RR (/min)</label>
+                    <label for="RR" class="form-label">Respiratory Rate (/min)</label>
                     <input type="number" class="form-control" name="RR" id="RR" min="0" max="100" value="{{ previous_data['RR'] if previous_data else '' }}" required>
                 </div>
 
                 <!-- CRP Input -->
                 <div class="mb-3">
-                    <label for="CRP" class="form-label">CRP (mg/dL)</label>
+                    <label for="CRP" class="form-label">C-reactive Protein (mg/dL)</label>
                     <input type="number" class="form-control" name="CRP" id="CRP" min="0" max="1000" value="{{ previous_data['CRP'] if previous_data else '' }}" required>
                 </div>
 
                 <!-- LDH Input -->
                 <div class="mb-3">
-                    <label for="LDH" class="form-label">LDH (U/L)</label>
+                    <label for="LDH" class="form-label">Lactate Dehydrogenase (U/L)</label>
                     <input type="number" class="form-control" name="LDH" id="LDH" min="0" max="10000" value="{{ previous_data['LDH'] if previous_data else '' }}" required>
                 </div>
 
                 <!-- ANC Input -->
                 <div class="mb-3">
-                    <label for="ANC" class="form-label">ANC (/uL)</label>
+                    <label for="ANC" class="form-label">Absolute Neutrophil Count (/uL)</label>
                     <input type="number" class="form-control" name="ANC" id="ANC" min="0" max="100000" value="{{ previous_data['ANC'] if previous_data else '' }}" required>
                 </div>
 
                 <!-- WBC Input -->
                 <div class="mb-3">
-                    <label for="WBC" class="form-label">WBC (/uL)</label>
+                    <label for="WBC" class="form-label">White Blood Cell Count (/uL)</label>
                     <input type="number" class="form-control" name="WBC" id="WBC" min="0" max="100000" value="{{ previous_data['WBC'] if previous_data else '' }}" required>
                 </div>
 
                 <!-- ALC Input -->
                 <div class="mb-3">
-                    <label for="ALC" class="form-label">ALC (/uL)</label>
+                    <label for="ALC" class="form-label">Absolute Lymphocyte Count (/uL)</label>
                     <input type="number" class="form-control" name="ALC" id="ALC" min="0" max="100000" value="{{ previous_data['ALC'] if previous_data else '' }}" required>
                 </div>
 
                 <!-- PLT Input -->
                 <div class="mb-3">
-                    <label for="PLT" class="form-label">PLT (/uL)</label>
+                    <label for="PLT" class="form-label">Platelet Count (/uL)</label>
                     <input type="number" class="form-control" name="PLT" id="PLT" min="0" max="1000000" value="{{ previous_data['PLT'] if previous_data else '' }}" required>
                 </div>
 
@@ -93,7 +93,7 @@
     </div>
     <!-- RIETS Description -->
     <div class="mt-5 p-3 bg-light rounded">
-        <p><strong>About RIETS:</strong> Developed based on extensive data from geographically distributed 19 hospitals in South Korea over a three-year pandemic period, RIETS is a machine learning-based prognostic model aimed at early patient triaging for COVID-19 severity. Incorporating 11 readily available features upon hospitalization, it provides risk estimates and detailed interpretations, assisting in clinical decision-making. RIETS is recognized for its robust discriminative power (AUC of 0.937 [0.935-0.938], novel interpretability (DDRTree - see results page), and high potential for clinical applicability.</p>
+        <p><strong>About RIETS:</strong> RIETS is a machine learning-based prognostic model aimed at early patient triaging for COVID-19 severity. It was developed based on extensive data from geographically distributed 19 hospitals in South Korea over a three-year pandemic period. Incorporating 11 readily available features upon hospitalization, it provides risk estimates and detailed interpretations that may assist clinical decision-making. RIETS is recognized for its robust discriminative power (AUC of 0.937 [0.935-0.938], novel interpretability through DDRTree technique (see results page), and high potential for clinical applicability.</p>
         <p>For more inquiries regarding RIETS, please email: <a href="mailto:baeksw98@gmail.com">baeksw98@gmail.com</a></p>
     </div>
     
