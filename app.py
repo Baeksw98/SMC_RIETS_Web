@@ -10,6 +10,9 @@ import tensorflow as tf
 from tensorflow.keras.models import load_model
 import joblib
 import pyodbc
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = 'riets-key'  
@@ -181,7 +184,15 @@ def result_page():
         return redirect(url_for('home'))
 
 def create_connection():
-    conn_str = 'Server=tcp:riets-web-server.database.windows.net,1433;Initial Catalog=riets-web-data;Persist Security Info=False;User ID=baeksw98;Password=Qortkddnjs1!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;'
+    uid = os.environ.get('DB_UID')
+    pwd = os.environ.get('DB_PWD')
+    
+    conn_str = (f'Driver={{ODBC Driver 17 for SQL Server}};'
+                f'Server=tcp:riets-web-server.database.windows.net,1433;'
+                f'Database=riets-web-data;'
+                f'Uid={uid};'
+                f'Pwd={pwd};'
+                f'Encrypt=Yes;')
     conn = pyodbc.connect(conn_str)
     return conn
 
