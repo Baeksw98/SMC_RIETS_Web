@@ -184,14 +184,17 @@ def result_page():
         return redirect(url_for('home'))
 
 def create_connection():
-    uid = os.environ.get('DB_UID')
-    pwd = os.environ.get('DB_PWD')
+    # uid = os.environ.get('DB_UID')
+    # pwd = os.environ.get('DB_PWD')
     
     conn_str = (f'Driver={{ODBC Driver 17 for SQL Server}};'
                 f'Server=tcp:riets-web-server.database.windows.net,1433;'
                 f'Database=riets-web-data;'
-                f'Uid={uid};'
-                f'Pwd={pwd};'
+                # f'Uid={uid};'
+                # f'Pwd={pwd};'
+                #Temportal hard coding for check
+                f'Uid=baeksw98;'
+                f'Pwd=Qortkddnjs1!;'
                 f'Encrypt=Yes;')
     conn = pyodbc.connect(conn_str)
     return conn
